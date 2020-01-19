@@ -1,0 +1,92 @@
+/* Mixins */
+	@mixin transitions-ease($timing){
+		-webkit-transition: all $timing cubic-bezier(.3,0,.2,1);
+			-moz-transition: all $timing cubic-bezier(.3,0,.2,1);
+			 -ms-transition: all $timing cubic-bezier(.3,0,.2,1);
+			  -o-transition: all $timing cubic-bezier(.3,0,.2,1);
+				  transition: all $timing cubic-bezier(.3,0,.2,1);
+	}
+	@mixin translate($Xmove, $Ymove){
+		-webkit-transform: translate($Xmove, $Ymove);
+		-moz-transform: translate($Xmove, $Ymove);
+		-ms-transform: translate($Xmove, $Ymove);
+		-o-transform: translate($Xmove, $Ymove);
+		transform: translate($Xmove, $Ymove);
+	}
+/* End of Mixins */
+
+
+#img-shifter{
+	position: relative;
+
+	.imgs-canvas{
+		z-index: -1;
+		position: fixed;
+		top: 0; left: 0;
+		
+		img{
+			vertical-align: top;
+			position: absolute;
+			z-index: -1;
+			top: 50%;
+			left: 0%;
+			@include translate(-50%, -50%);
+			opacity: 0;
+			@include transitions-ease(.2s);
+			
+			&.active{
+				opacity: .6;
+			}
+		}
+	}
+	
+	.list-wrap{
+		padding: 0;
+		margin: 0;
+		text-align: center;
+		display:flex;
+		align-items: center;
+	}
+
+	.img-trigger{
+		display: inline;
+		padding: 50px 20px;
+		margin: 0;
+		opacity: 0.4;
+		
+		&:first-child{cursor: wait;}
+		&:last-child{cursor: help;}
+		
+		
+		&:hover{
+			opacity: 1;
+		}
+	}
+}
+
+
+
+// General style, not needed
+body{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #111;
+	color: #ddd;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: Baskerville;
+	font-weight: 100;
+}
+ul{
+	list-style-type: none;
+	display: flex;
+	li{
+		font-size: 32px;
+		font-weight: 100;
+		letter-spacing: 2px;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;		
+	}
+}
