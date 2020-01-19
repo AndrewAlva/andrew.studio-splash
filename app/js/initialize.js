@@ -9,9 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Trigger functions after page is completely loaded
 window.onload = function() {
-    // Do something, remove preloader perhaps
-    console.log("Page fully loaded.");
-    console.log("Initialize.js");
     ImgShifter.init();
 	animate();
+
+	document.getElementsByTagName('img')[0].classList.add('active');
 }

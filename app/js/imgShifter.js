@@ -1,6 +1,6 @@
 var cursor = {
 	x: window.innerWidth/2,
-	y: window.innerHeight/2
+	y: (window.innerHeight/2) - 120
 }
 
 var FollowObject = function(args){
@@ -12,7 +12,7 @@ var FollowObject = function(args){
 	this.imgs = this.imgCanvas.querySelectorAll('img');
 	this.pos = {
 		x: window.innerWidth/2,
-		y: window.innerHeight/2
+		y: (window.innerHeight/2) - 120
 	};
 	this.cof = 0.04; 
 	
@@ -44,7 +44,7 @@ var FollowObject = function(args){
 		
 		for(var i = 0; i < this.imgTriggers.length; i++){
 			_this.imgTriggers[i].addEventListener('mouseover', function(){
-				_this.hideImgs() /* Not necessary, codepen display hack */
+				_this.hideAllImgs() /* Not necessary, codepen display hack */
 				_this.showImg( _this.getImgId(this) )
 			});
 		}
@@ -54,7 +54,8 @@ var FollowObject = function(args){
 		
 		for(var i = 0; i < this.imgTriggers.length; i++){
 			_this.imgTriggers[i].addEventListener('mouseout', function(){
-				_this.hideImgs()
+				// _this.hideAllImgs()
+				_this.hideImg( _this.getImgId(this) )
 			});
 		}
 	};
@@ -63,11 +64,15 @@ var FollowObject = function(args){
 		return target.getAttribute("data-id");
 	}
 	
-	this.hideImgs = function(){
+	this.hideAllImgs = function(){
 		var _this = this;
 		for(var i = 0; i < this.imgs.length; i++){
 			_this.imgs[i].classList.remove('active');
 		}
+	}
+	this.hideImg = function(imgIndex){
+		this.hideAllImgs();
+		this.imgs[imgIndex].classList.add('active');
 	}
 	this.showImg = function(imgIndex){
 		this.imgs[imgIndex].classList.add('active');
